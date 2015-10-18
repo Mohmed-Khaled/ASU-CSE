@@ -1,3 +1,9 @@
+Name: Mohamed Khaled Gamil Ismail
+
+Section: 3
+
+S.N.: 33813
+***
 Q1.  A class is a programming construct that defines the common state and behavior of a group of similar objects.
 ***
 Q2.  A class design attempts to separate the public interface from the specifics of the implementation. The public interface represents the abstraction component of the design. Gathering the implementation details together and separating them from the abstraction is called encapsulation. Data hiding (putting data into the private section of a class) is an instance of encapsulation, and so is hiding functional details of an implementation in the private section.
