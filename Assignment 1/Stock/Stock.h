@@ -1,3 +1,6 @@
+#ifndef __Stock__
+#define __Stock__
+
 #include <string>
 
 class Stock {
@@ -21,3 +24,5 @@ public:
 	double getShareVal();
 	double getTotalVal();
 };
+
+#endif

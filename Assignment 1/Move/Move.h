@@ -1,3 +1,6 @@
+#ifndef __Move__
+#define __Move__
+
 class Move {
 private: 
 	double x; 
@@ -10,3 +13,5 @@ public:
 	// move object initialized to new x, y values and returns it 
 	void reset(double a = 0, double b = 0);  // resets x,y to a, b 
 };
+
+#endif

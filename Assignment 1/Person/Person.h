@@ -1,3 +1,6 @@
+#ifndef __Person__
+#define __Person__
+
 #include <string>
 using namespace std;
 
@@ -13,3 +16,5 @@ public:
 	void show() const;        // firstname lastname format 
 	void formalShow() const;  // lastname, firstname format 
 };
+
+#endif

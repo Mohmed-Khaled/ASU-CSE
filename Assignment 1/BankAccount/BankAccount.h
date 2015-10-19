@@ -1,3 +1,6 @@
+#ifndef __BankAccount__
+#define __BankAccount__
+
 #include <string>
 using namespace std;
 
@@ -13,3 +16,5 @@ private:
 	string account_number;
 	int balance;
 };
+
+#endif
