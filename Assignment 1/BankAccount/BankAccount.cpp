@@ -18,12 +18,20 @@ BankAccount::BankAccount(string depositor_name, string account_number, int balan
 
 void BankAccount::deposit(int value)
 {
-	BankAccount::balance += value;
+	if (value > 0)
+		BankAccount::balance += value;
+	else
+		cout << "Wrong value for money" << endl;
 }
 
 void BankAccount::withdraw(int value)
 {
-	BankAccount::balance -= value;
+	if (value <= 0)
+		cout << "Wrong value for money" << endl;
+	else if(value > BankAccount::balance)
+		cout << "You don't have the required money in your account" << endl;
+	else
+		BankAccount::balance -= value;
 }
 
 void BankAccount::displayAccount()
