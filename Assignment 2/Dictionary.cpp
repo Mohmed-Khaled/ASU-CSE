@@ -56,17 +56,7 @@ private:
 			return true;
 		}
 	}
-	bool nameExist(string name)
-	{
-		for (int i = 0; i<size; i++)
-		{
-			if (names[i] == name)
-			{
-				return true;
-			}
-		}
-		return false;
-	}
+
 public:
 	// default constructor
 	Dictionary()
@@ -81,12 +71,15 @@ public:
 		REQUIRE0((entrySize = getSize()) || 1);
 		REQUIRE0(checkName(name));
 		REQUIRE0(checkEmail(email));
+		REQUIRE0(associatedEmails(name) == 0);
+		REQUIRE0(!nameExist(name));
 		//body start
 		names[size] = name;
 		emails[size] = email;
 		size++;
 		//body end
 		ENSURE0(nameExist(name));
+		ENSURE0(associatedEmails(name) == 1);
 		ENSURE0(getEmail(name) == email);
 		ENSURE0(getSize() == entrySize + 1);
 		INVARIANT0(size < 100);
@@ -98,6 +91,8 @@ public:
 		INVARIANT0(size < 100);
 		REQUIRE0((entrySize = getSize()) || 1);
 		REQUIRE0(checkName(name));
+		REQUIRE0(associatedEmails(name) == 1);
+		REQUIRE0(nameExist(name));
 		//body start
 		// a simple example on removing array of numbers
 		// if the array is  {1,5,3,4,2,6,7,8,9,10}
@@ -124,9 +119,11 @@ public:
 		}
 		//body end
 		ENSURE0(!nameExist(name));
+		ENSURE0(associatedEmails(name) == 0);
 		ENSURE0(getSize() == entrySize - 1);
 		INVARIANT0(size < 100);
 	}
+
 	void printentries()
 	{
 		for(int i = 0;i < size;i++)
@@ -134,13 +131,15 @@ public:
 			cout << "Entry #" << i+1 << ":" << endl << names[i] << ": " << emails[i] <<endl;
 		}
 	}
+
 	int getSize() 
 	{ 
 		return size; 
 	}
+
 	string getEmail(string name) 
 	{ 
-		int index = -1;
+		int index;
 
 		for (int i = 0; i<size; i++)
 		{
@@ -150,10 +149,34 @@ public:
 				break;
 			}
 		}
-		if (index != -1)
+		return emails[index];
+	}
+
+	bool nameExist(string name)
+	{
+		for (int i = 0; i<size; i++)
 		{
-			return emails[index];
+			if (names[i] == name)
+			{
+				return true;
+			}
 		}
+		return false;
+	}
+
+	int associatedEmails(string name)
+	{
+		int counter = 0;
+
+		for (int i = 0; i<size; i++)
+		{
+			if (names[i] == name)
+			{
+				counter += 1;
+			}
+		}
+
+		return counter;
 	}
 };
 
