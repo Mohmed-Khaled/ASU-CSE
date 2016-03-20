@@ -17,8 +17,6 @@
             <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto">
                 <StackPanel Name="StackPanel" Orientation="Horizontal">
                     <gui:TimeMarker></gui:TimeMarker>
-                    <gui:ChartBar Width="30" Height="60" VerticalAlignment="Top"></gui:ChartBar>
-                    <gui:TimeMarker></gui:TimeMarker>
                 </StackPanel>
             </ScrollViewer>
             <Grid Name="Grid2" Grid.Row="2">

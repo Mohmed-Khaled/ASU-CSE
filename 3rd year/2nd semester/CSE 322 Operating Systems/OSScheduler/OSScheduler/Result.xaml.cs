@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using OSScheduler.GUI;
 
 namespace OSScheduler
 {
@@ -22,6 +23,10 @@ namespace OSScheduler
         public Result()
         {
             InitializeComponent();
+            var chartBar = new ChartBar("P1", 4) {VerticalAlignment = VerticalAlignment.Top};
+            StackPanel.Children.Add(chartBar);
+            StackPanel.Children.Add(new TimeMarker(4));
+
         }
     }
 }
