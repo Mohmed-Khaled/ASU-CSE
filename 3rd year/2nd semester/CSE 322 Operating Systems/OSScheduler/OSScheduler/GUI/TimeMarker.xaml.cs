@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace OSScheduler
+namespace OSScheduler.GUI
 {
     /// <summary>
-    /// Interaction logic for ChartBar.xaml
+    /// Interaction logic for TimeMarker.xaml
     /// </summary>
-    public partial class ChartBar : UserControl
+    public partial class TimeMarker : UserControl
     {
-        public ChartBar()
+        public TimeMarker()
         {
             InitializeComponent();
         }

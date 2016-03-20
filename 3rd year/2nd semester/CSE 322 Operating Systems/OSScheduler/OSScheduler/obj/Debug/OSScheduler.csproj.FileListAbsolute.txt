@@ -15,3 +15,26 @@ c:\users\mk\documents\visual studio 2015\Projects\OSScheduler\OSScheduler\obj\De
 c:\users\mk\documents\visual studio 2015\Projects\OSScheduler\OSScheduler\obj\Debug\OSScheduler.csprojResolveAssemblyReference.cache
 c:\users\mk\documents\visual studio 2015\Projects\OSScheduler\OSScheduler\obj\Debug\DataEntry.baml
 c:\users\mk\documents\visual studio 2015\Projects\OSScheduler\OSScheduler\obj\Debug\DataEntry.g.cs
+E:\study\Cloud Drives\Github\ASU-CSE\3rd year\2nd semester\CSE 322 Operating Systems\OSScheduler\OSScheduler\bin\Debug\OSScheduler.exe.config
+E:\study\Cloud Drives\Github\ASU-CSE\3rd year\2nd semester\CSE 322 Operating Systems\OSScheduler\OSScheduler\obj\Debug\OSScheduler.exe
+E:\study\Cloud Drives\Github\ASU-CSE\3rd year\2nd semester\CSE 322 Operating Systems\OSScheduler\OSScheduler\obj\Debug\OSScheduler.pdb
+E:\study\Cloud Drives\Github\ASU-CSE\3rd year\2nd semester\CSE 322 Operating Systems\OSScheduler\OSScheduler\bin\Debug\OSScheduler.exe
+E:\study\Cloud Drives\Github\ASU-CSE\3rd year\2nd semester\CSE 322 Operating Systems\OSScheduler\OSScheduler\bin\Debug\OSScheduler.pdb
+E:\study\Cloud Drives\Github\ASU-CSE\3rd year\2nd semester\CSE 322 Operating Systems\OSScheduler\OSScheduler\obj\Debug\OSScheduler.csprojResolveAssemblyReference.cache
+E:\study\Cloud Drives\Github\ASU-CSE\3rd year\2nd semester\CSE 322 Operating Systems\OSScheduler\OSScheduler\obj\Debug\DataEntry.baml
+E:\study\Cloud Drives\Github\ASU-CSE\3rd year\2nd semester\CSE 322 Operating Systems\OSScheduler\OSScheduler\obj\Debug\GUI\ChartBar.baml
+E:\study\Cloud Drives\Github\ASU-CSE\3rd year\2nd semester\CSE 322 Operating Systems\OSScheduler\OSScheduler\obj\Debug\MainWindow.baml
+E:\study\Cloud Drives\Github\ASU-CSE\3rd year\2nd semester\CSE 322 Operating Systems\OSScheduler\OSScheduler\obj\Debug\DataEntry.g.cs
+E:\study\Cloud Drives\Github\ASU-CSE\3rd year\2nd semester\CSE 322 Operating Systems\OSScheduler\OSScheduler\obj\Debug\GUI\ChartBar.g.cs
+E:\study\Cloud Drives\Github\ASU-CSE\3rd year\2nd semester\CSE 322 Operating Systems\OSScheduler\OSScheduler\obj\Debug\GUI\TimeMarker.g.cs
+E:\study\Cloud Drives\Github\ASU-CSE\3rd year\2nd semester\CSE 322 Operating Systems\OSScheduler\OSScheduler\obj\Debug\MainWindow.g.cs
+E:\study\Cloud Drives\Github\ASU-CSE\3rd year\2nd semester\CSE 322 Operating Systems\OSScheduler\OSScheduler\obj\Debug\Result.g.cs
+E:\study\Cloud Drives\Github\ASU-CSE\3rd year\2nd semester\CSE 322 Operating Systems\OSScheduler\OSScheduler\obj\Debug\App.g.cs
+E:\study\Cloud Drives\Github\ASU-CSE\3rd year\2nd semester\CSE 322 Operating Systems\OSScheduler\OSScheduler\obj\Debug\GeneratedInternalTypeHelper.g.cs
+E:\study\Cloud Drives\Github\ASU-CSE\3rd year\2nd semester\CSE 322 Operating Systems\OSScheduler\OSScheduler\obj\Debug\OSScheduler_MarkupCompile.cache
+E:\study\Cloud Drives\Github\ASU-CSE\3rd year\2nd semester\CSE 322 Operating Systems\OSScheduler\OSScheduler\obj\Debug\OSScheduler_MarkupCompile.lref
+E:\study\Cloud Drives\Github\ASU-CSE\3rd year\2nd semester\CSE 322 Operating Systems\OSScheduler\OSScheduler\obj\Debug\GUI\TimeMarker.baml
+E:\study\Cloud Drives\Github\ASU-CSE\3rd year\2nd semester\CSE 322 Operating Systems\OSScheduler\OSScheduler\obj\Debug\Result.baml
+E:\study\Cloud Drives\Github\ASU-CSE\3rd year\2nd semester\CSE 322 Operating Systems\OSScheduler\OSScheduler\obj\Debug\OSScheduler.g.resources
+E:\study\Cloud Drives\Github\ASU-CSE\3rd year\2nd semester\CSE 322 Operating Systems\OSScheduler\OSScheduler\obj\Debug\OSScheduler.Properties.Resources.resources
+E:\study\Cloud Drives\Github\ASU-CSE\3rd year\2nd semester\CSE 322 Operating Systems\OSScheduler\OSScheduler\obj\Debug\OSScheduler.csproj.GenerateResource.Cache

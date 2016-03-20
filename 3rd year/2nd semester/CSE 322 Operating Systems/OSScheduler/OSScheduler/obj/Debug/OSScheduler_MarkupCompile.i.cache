@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-c:\users\mk\documents\visual studio 2015\Projects\OSScheduler\OSScheduler\obj\Debug\
+E:\study\Cloud Drives\Github\ASU-CSE\3rd year\2nd semester\CSE 322 Operating Systems\OSScheduler\OSScheduler\obj\Debug\
 OSScheduler
 none
 false
 DEBUG;TRACE
-c:\users\mk\documents\visual studio 2015\Projects\OSScheduler\OSScheduler\App.xaml
-4-396433163
+E:\study\Cloud Drives\Github\ASU-CSE\3rd year\2nd semester\CSE 322 Operating Systems\OSScheduler\OSScheduler\App.xaml
+5-766215984
 
-122002066521
-13738642453
-ChartBar.xaml;DataEntry.xaml;MainWindow.xaml;Result.xaml;
+13563042258
+15767094614
+DataEntry.xaml;GUI\ChartBar.xaml;GUI\TimeMarker.xaml;MainWindow.xaml;Result.xaml;
 
-False
+True
 

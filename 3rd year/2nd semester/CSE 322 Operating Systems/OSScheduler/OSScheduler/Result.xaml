@@ -3,9 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:gui="clr-namespace:OSScheduler.GUI"
         mc:Ignorable="d"
         Title="OS Scheduler" Height="350" Width="525">
-    <ScrollViewer>
+    <ScrollViewer VerticalScrollBarVisibility="auto">
         <Grid >
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -13,8 +14,13 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Label HorizontalAlignment="Center" Name="Avwt">Average waiting time: </Label>
-            <Grid Name="Grid1" Grid.Row="1">
-            </Grid>
+            <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto">
+                <StackPanel Name="StackPanel" Orientation="Horizontal">
+                    <gui:TimeMarker></gui:TimeMarker>
+                    <gui:ChartBar Width="30" Height="60" VerticalAlignment="Top"></gui:ChartBar>
+                    <gui:TimeMarker></gui:TimeMarker>
+                </StackPanel>
+            </ScrollViewer>
             <Grid Name="Grid2" Grid.Row="2">
                 <Label>To be implemented</Label>
             </Grid>
