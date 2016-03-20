@@ -1,7 +1,7 @@
 /* That's the design by contract implemntation file */
 
 #pragma once
-#include "stdafx.h"
+//#include "stdafx.h"
 #include <string>
 #include <stdexcept>
 #include <ostream>
