@@ -13,14 +13,13 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <Label HorizontalAlignment="Center" Name="Avwt">Average waiting time: </Label>
+            <Label HorizontalAlignment="Center" Name="Avwt"></Label>
             <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto">
                 <StackPanel Name="StackPanel" Orientation="Horizontal">
-                    <gui:TimeMarker></gui:TimeMarker>
                 </StackPanel>
             </ScrollViewer>
             <Grid Name="Grid2" Grid.Row="2">
-                <Label>To be implemented</Label>
+                <Label></Label>
             </Grid>
         </Grid>
     </ScrollViewer>

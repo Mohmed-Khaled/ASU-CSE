@@ -22,8 +22,8 @@ namespace OSScheduler
             {
                 if (numberOfProcesses > 0)
                 {
-                    var dataEntry1 = new DataEntry(numberOfProcesses, _alg.Tag.ToString());
-                    dataEntry1.Show();
+                    var dataEntry = new DataEntry(numberOfProcesses, _alg.Tag.ToString());
+                    dataEntry.Show();
                     Close();
                 }
                 else

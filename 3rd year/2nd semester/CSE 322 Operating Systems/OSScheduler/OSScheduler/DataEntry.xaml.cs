@@ -1,5 +1,8 @@
-﻿using System.Windows;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
+using OSScheduler.BackEnd;
 
 namespace OSScheduler
 {
@@ -39,12 +42,141 @@ namespace OSScheduler
 
         }
 
-        private static void Simulate_Click(object sender, RoutedEventArgs e)
+        private void Simulate_Click(object sender, RoutedEventArgs e)
         {
-            var result = new Result();
+            switch (_alg)
+            {
+                case "RR":
+                    Simulate3();
+                    break;
+                case "PNP":
+                case "PP":
+                    Simulate2();
+                    break;
+                default:
+                    Simulate1();
+                    break;
+            }
+        }
+
+        #region Simulate
+        private void Simulate1()
+        {
+            var processes = new LinkedList<Process>();
+            for (var i = 1; i <= _numberOfProcesses; i++)
+            {
+                var name = "P[" + (i) + "]";
+                double burstTime = 0, arrivalTime = 0;
+                foreach (var element in Grid.Children.OfType<TextBox>())
+                {
+                    if (element.Name == "Bt" + (i))
+                    {
+                        if (double.TryParse(element.Text, out burstTime)) continue;
+                        MessageBox.Show("Please enter valid inputs.", "Error",
+                            MessageBoxButton.OK, MessageBoxImage.Error);
+                        return;
+                    }
+                    if (element.Name != "At" + (i)) continue;
+                    if (!double.TryParse(element.Text, out arrivalTime))
+                    {
+                        MessageBox.Show("Please enter valid inputs.", "Error",
+                            MessageBoxButton.OK, MessageBoxImage.Error);
+                        return;
+                    }
+                    break;
+                }
+                processes.AddLast(new Process(name, burstTime, arrivalTime));
+            }
+            var scheduler = new Scheduler(processes);
+            var resultList = scheduler.Sort(_alg);
+            var result = new Result(resultList, _numberOfProcesses);
             result.Show();
         }
 
+        private void Simulate2()
+        {
+            var processes = new LinkedList<Process>();
+            for (var i = 1; i <= _numberOfProcesses; i++)
+            {
+                var name = "P[" + (i) + "]";
+                double burstTime = 0, arrivalTime = 0;
+                var priority = 0;
+                foreach (var element in Grid.Children.OfType<TextBox>())
+                {
+                    if (element.Name == "Bt" + (i))
+                    {
+                        if (double.TryParse(element.Text, out burstTime)) continue;
+                        MessageBox.Show("Please enter valid inputs.", "Error",
+                            MessageBoxButton.OK, MessageBoxImage.Error);
+                        return;
+                    }
+                    if (element.Name == "At" + (i))
+                    {
+                        if (double.TryParse(element.Text, out arrivalTime)) continue;
+                        MessageBox.Show("Please enter valid inputs.", "Error",
+                            MessageBoxButton.OK, MessageBoxImage.Error);
+                        return;
+                    }
+                    if (element.Name != "Pt" + (i)) continue;
+                    if (!int.TryParse(element.Text, out priority))
+                    {
+                        MessageBox.Show("Please enter valid inputs.", "Error",
+                            MessageBoxButton.OK, MessageBoxImage.Error);
+                        return;
+                    }
+                    break;
+                }
+                processes.AddLast(new Process(name, burstTime, arrivalTime, priority));
+            }
+            var scheduler = new Scheduler(processes);
+            var resultList = scheduler.Sort(_alg);
+            var result = new Result(resultList, _numberOfProcesses);
+            result.Show();
+        }
+
+        private void Simulate3()
+        {
+            var processes = new LinkedList<Process>();
+            double quantum = 0;
+            for (var i = 1; i <= _numberOfProcesses; i++)
+            {
+                var name = "P[" + (i) + "]";
+                double burstTime = 0, arrivalTime = 0;
+                foreach (var element in Grid.Children.OfType<TextBox>())
+                {
+                    if (element.Name == "quantum")
+                    {
+                        if (double.TryParse(element.Text, out quantum)) continue;
+                        MessageBox.Show("Please enter valid inputs.", "Error",
+                            MessageBoxButton.OK, MessageBoxImage.Error);
+                        return;
+                    }
+                    if (element.Name == "Bt" + (i))
+                    {
+                        if (double.TryParse(element.Text, out burstTime)) continue;
+                        MessageBox.Show("Please enter valid inputs.", "Error",
+                            MessageBoxButton.OK, MessageBoxImage.Error);
+                        return;
+                    }
+                    if (element.Name != "At" + (i)) continue;
+                    if (!double.TryParse(element.Text, out arrivalTime))
+                    {
+                        MessageBox.Show("Please enter valid inputs.", "Error",
+                            MessageBoxButton.OK, MessageBoxImage.Error);
+                        return;
+                    }
+                    break;
+                }
+                processes.AddLast(new Process(name, burstTime, arrivalTime));
+            }
+            var scheduler = new Scheduler(processes);
+            var resultList = scheduler.Sort(_alg, quantum);
+            var result = new Result(resultList, _numberOfProcesses);
+            result.Show();
+        }
+        #endregion Simulate
+
+        #region RenderGrid
         private void RenderGrid1()
         {
             var gridCol1 = new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) };
@@ -338,5 +470,6 @@ namespace OSScheduler
             Grid.Children.Add(button1);
             Grid.Children.Add(button2);
         }
+        #endregion RenderGrid
     }
 }

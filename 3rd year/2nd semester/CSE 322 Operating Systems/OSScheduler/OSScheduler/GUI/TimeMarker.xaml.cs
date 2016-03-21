@@ -13,7 +13,7 @@ namespace OSScheduler.GUI
             
         }
 
-        public TimeMarker(int time) : this()
+        public TimeMarker(double time) : this()
         {
             Time.Content = time;
         }

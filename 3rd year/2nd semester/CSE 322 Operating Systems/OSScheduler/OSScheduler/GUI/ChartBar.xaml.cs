@@ -13,11 +13,18 @@ namespace OSScheduler.GUI
             Height = 60;
         }
     
-        public ChartBar(string name, int time) : this()
+        public ChartBar(string name, double time) : this()
         {
             ProcessName.Content = name;
             ProcessTime.Content = time;
-            Width = 30 * time;
+            if (time < 1)
+            {
+                Width = 25;
+            }
+            else
+            {
+                Width = 30 * time;
+            }
         }
     }
 }
