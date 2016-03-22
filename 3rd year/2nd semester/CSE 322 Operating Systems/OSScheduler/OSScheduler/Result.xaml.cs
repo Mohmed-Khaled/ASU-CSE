@@ -34,7 +34,7 @@ namespace OSScheduler
             while (itrProcess != null)
             {
                 var process = itrProcess.Value;
-                int lastMark;
+                double lastMark;
                 LinkedListNode<TimeInfo> itrTime;
                 if (process == list.First())
                 {
@@ -42,7 +42,7 @@ namespace OSScheduler
                 }
                 else
                 {
-                    lastMark = int.Parse(StackPanel.Children.OfType<TimeMarker>().Last().Time.Content.ToString());
+                    lastMark = double.Parse(StackPanel.Children.OfType<TimeMarker>().Last().Time.Content.ToString());
                     if (Math.Abs(process.ArrivalTime - (-1)) < 0.0001)
                     {
                         process.ArrivalTime = lastMark;
@@ -73,7 +73,7 @@ namespace OSScheduler
                 var chartBar = new ChartBar(process.Name, process.BurstTime)
                 { VerticalAlignment = VerticalAlignment.Top };
                 StackPanel.Children.Add(chartBar);
-                lastMark = int.Parse(StackPanel.Children.OfType<TimeMarker>().Last().Time.Content.ToString());
+                lastMark = double.Parse(StackPanel.Children.OfType<TimeMarker>().Last().Time.Content.ToString());
                 StackPanel.Children.Add(new TimeMarker(lastMark + process.BurstTime));
                 var flag = true;
                 itrTime = _timeInfos.First;
