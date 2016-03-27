@@ -12,24 +12,16 @@ namespace OSScheduler
     /// </summary>
     public partial class Result
     {
-        private LinkedList<TimeInfo> _timeInfos = new LinkedList<TimeInfo>();
+        private readonly LinkedList<TimeInfo> _timeInfos = new LinkedList<TimeInfo>();
          
         public Result()
         {
-            InitializeComponent();
-            StackPanel.Children.Add(new TimeMarker(0));
-            var chartBar1 = new ChartBar("P1", 4) {VerticalAlignment = VerticalAlignment.Top};
-            StackPanel.Children.Add(chartBar1);
-            StackPanel.Children.Add(new TimeMarker(4));
-            var chartBar2 = new ChartBar("P2", 2) { VerticalAlignment = VerticalAlignment.Top };
-            StackPanel.Children.Add(chartBar2);
-            StackPanel.Children.Add(new TimeMarker(6));
+            InitializeComponent(); 
         }
 
-        public Result(LinkedList<Process> list, int numberOfProcesses)
+        public Result(LinkedList<Process> list, int numberOfProcesses) : this()
         {
             double avwt = 0;
-            InitializeComponent();
             var itrProcess = list.First;
             while (itrProcess != null)
             {
@@ -38,12 +30,19 @@ namespace OSScheduler
                 LinkedListNode<TimeInfo> itrTime;
                 if (process == list.First())
                 {
+                    if (process.ArrivalTime > 0)
+                    {
+                        StackPanel.Children.Add(new TimeMarker(0));
+                        var chartBarIdle = new ChartBar("Idle", process.ArrivalTime)
+                        { VerticalAlignment = VerticalAlignment.Top };
+                        StackPanel.Children.Add(chartBarIdle);
+                    }
                     StackPanel.Children.Add(new TimeMarker(process.ArrivalTime));
                 }
                 else
                 {
                     lastMark = double.Parse(StackPanel.Children.OfType<TimeMarker>().Last().Time.Content.ToString());
-                    if (Math.Abs(process.ArrivalTime - (-1)) < 0.0001)
+                    if (Math.Abs(process.ArrivalTime + 1) < double.Epsilon)
                     {
                         process.ArrivalTime = lastMark;
                         itrTime = _timeInfos.First;
@@ -70,8 +69,8 @@ namespace OSScheduler
                         avwt += lastMark - process.ArrivalTime;
                     }
                 }
-                var chartBar = new ChartBar(process.Name, process.BurstTime)
-                { VerticalAlignment = VerticalAlignment.Top };
+                var chartBar = new ChartBar(process.Name, Math.Round(process.BurstTime, 2))
+                { VerticalAlignment = VerticalAlignment.Top};
                 StackPanel.Children.Add(chartBar);
                 lastMark = double.Parse(StackPanel.Children.OfType<TimeMarker>().Last().Time.Content.ToString());
                 StackPanel.Children.Add(new TimeMarker(lastMark + process.BurstTime));

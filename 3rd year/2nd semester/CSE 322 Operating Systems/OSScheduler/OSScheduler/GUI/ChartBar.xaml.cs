@@ -1,6 +1,4 @@
-﻿using System.Windows.Controls;
-
-namespace OSScheduler.GUI
+﻿namespace OSScheduler.GUI
 {
     /// <summary>
     /// Interaction logic for ChartBar.xaml
@@ -19,11 +17,11 @@ namespace OSScheduler.GUI
             ProcessTime.Content = time;
             if (time < 1)
             {
-                Width = 25;
+                Width = 30;
             }
             else
             {
-                Width = 30 * time;
+                Width = 35 * time;
             }
         }
     }

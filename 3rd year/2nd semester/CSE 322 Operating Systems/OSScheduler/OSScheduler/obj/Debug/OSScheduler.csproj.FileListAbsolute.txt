@@ -38,3 +38,4 @@ E:\study\Cloud Drives\Github\ASU-CSE\3rd year\2nd semester\CSE 322 Operating Sys
 E:\study\Cloud Drives\Github\ASU-CSE\3rd year\2nd semester\CSE 322 Operating Systems\OSScheduler\OSScheduler\obj\Debug\OSScheduler.g.resources
 E:\study\Cloud Drives\Github\ASU-CSE\3rd year\2nd semester\CSE 322 Operating Systems\OSScheduler\OSScheduler\obj\Debug\OSScheduler.Properties.Resources.resources
 E:\study\Cloud Drives\Github\ASU-CSE\3rd year\2nd semester\CSE 322 Operating Systems\OSScheduler\OSScheduler\obj\Debug\OSScheduler.csproj.GenerateResource.Cache
+E:\study\Cloud Drives\Github\ASU-CSE\3rd year\2nd semester\CSE 322 Operating Systems\OSScheduler\OSScheduler\obj\Debug\App.baml

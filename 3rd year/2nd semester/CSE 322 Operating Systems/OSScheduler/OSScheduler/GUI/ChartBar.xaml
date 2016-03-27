@@ -7,12 +7,12 @@
              d:DesignHeight="80" d:DesignWidth="30000">
     <Grid Background="Aqua">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Label Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" 
-               Name="ProcessName"></Label>
+               Name="ProcessName" Foreground="Black"></Label>
         <Label Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" 
-               Name="ProcessTime"></Label>
+               Name="ProcessTime" Foreground="Black"></Label>
     </Grid>
 </UserControl>

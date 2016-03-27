@@ -12,6 +12,7 @@ namespace OSScheduler
 
         public MainWindow()
         {
+            System.Threading.Thread.Sleep(1500);
             InitializeComponent();
         }
 
@@ -37,7 +38,6 @@ namespace OSScheduler
             {
                 MessageBox.Show("Please enter valid inputs.","Error",
                     MessageBoxButton.OK,MessageBoxImage.Error);
-
             }
         }
 

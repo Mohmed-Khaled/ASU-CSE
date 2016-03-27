@@ -1,6 +1,4 @@
-﻿using System.Windows.Controls;
-
-namespace OSScheduler.GUI
+﻿namespace OSScheduler.GUI
 {
     /// <summary>
     /// Interaction logic for TimeMarker.xaml
@@ -10,7 +8,7 @@ namespace OSScheduler.GUI
         public TimeMarker()
         {
             InitializeComponent();
-            
+               
         }
 
         public TimeMarker(double time) : this()

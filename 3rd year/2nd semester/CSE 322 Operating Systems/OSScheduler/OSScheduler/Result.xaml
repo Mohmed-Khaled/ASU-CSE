@@ -5,22 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:gui="clr-namespace:OSScheduler.GUI"
         mc:Ignorable="d"
-        Title="OS Scheduler" Height="350" Width="525">
-    <ScrollViewer VerticalScrollBarVisibility="auto">
-        <Grid >
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-            <Label HorizontalAlignment="Center" Name="Avwt"></Label>
-            <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto">
-                <StackPanel Name="StackPanel" Orientation="Horizontal">
-                </StackPanel>
-            </ScrollViewer>
-            <Grid Name="Grid2" Grid.Row="2">
-                <Label></Label>
-            </Grid>
-        </Grid>
-    </ScrollViewer>
+        Style="{StaticResource {x:Type Window}}" WindowStartupLocation = "CenterScreen">
+    <Window.Resources>
+        <Style TargetType = "gui:ChartBar">
+            <Setter Property = "Margin" Value = "-1,0,-1,0" />
+            <Setter Property = "FontSize" Value="12"/>
+        </Style>
+        <Style TargetType = "Label">
+            <Setter Property = "Foreground" Value = "Black"/>
+        </Style>
+        <Style TargetType = "gui:TimeMarker">
+            <Setter Property = "Margin" Value = "-1,0,-1,0" />
+        </Style>
+    </Window.Resources>
+    <Grid VerticalAlignment="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Label HorizontalAlignment="Center" Name="Avwt" FontSize="30" Foreground="White" Margin="0,0,0,50"></Label>
+        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+            <StackPanel Name="StackPanel" Orientation="Horizontal">
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
 </Window>

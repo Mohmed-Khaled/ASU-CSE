@@ -13,6 +13,6 @@
         <StackPanel Background="Aqua">
             <Line VerticalAlignment="Top" HorizontalAlignment="Center" X1="0" X2="0" Y1="0" Y2="60" Stroke="Black"/>
         </StackPanel>
-        <Label Grid.Row="1" HorizontalAlignment="Center" Name="Time">0</Label>
+        <Label Grid.Row="1" HorizontalAlignment="Center" Name="Time" Foreground="White">0</Label>
     </Grid>
 </UserControl>

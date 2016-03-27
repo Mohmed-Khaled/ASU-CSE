@@ -12,10 +12,13 @@ E:\study\Cloud Drives\Github\ASU-CSE\3rd year\2nd semester\CSE 322 Operating Sys
 E:\study\Cloud Drives\Github\ASU-CSE\3rd year\2nd semester\CSE 322 Operating Systems\OSScheduler\OSScheduler\obj\Release\Result.g.cs
 E:\study\Cloud Drives\Github\ASU-CSE\3rd year\2nd semester\CSE 322 Operating Systems\OSScheduler\OSScheduler\obj\Release\App.g.cs
 E:\study\Cloud Drives\Github\ASU-CSE\3rd year\2nd semester\CSE 322 Operating Systems\OSScheduler\OSScheduler\obj\Release\OSScheduler_MarkupCompile.cache
-E:\study\Cloud Drives\Github\ASU-CSE\3rd year\2nd semester\CSE 322 Operating Systems\OSScheduler\OSScheduler\obj\Release\OSScheduler_MarkupCompile.lref
 E:\study\Cloud Drives\Github\ASU-CSE\3rd year\2nd semester\CSE 322 Operating Systems\OSScheduler\OSScheduler\obj\Release\Result.baml
 E:\study\Cloud Drives\Github\ASU-CSE\3rd year\2nd semester\CSE 322 Operating Systems\OSScheduler\OSScheduler\obj\Release\OSScheduler.g.resources
 E:\study\Cloud Drives\Github\ASU-CSE\3rd year\2nd semester\CSE 322 Operating Systems\OSScheduler\OSScheduler\obj\Release\OSScheduler.Properties.Resources.resources
 E:\study\Cloud Drives\Github\ASU-CSE\3rd year\2nd semester\CSE 322 Operating Systems\OSScheduler\OSScheduler\obj\Release\OSScheduler.csproj.GenerateResource.Cache
 E:\study\Cloud Drives\Github\ASU-CSE\3rd year\2nd semester\CSE 322 Operating Systems\OSScheduler\OSScheduler\obj\Release\OSScheduler.exe
 E:\study\Cloud Drives\Github\ASU-CSE\3rd year\2nd semester\CSE 322 Operating Systems\OSScheduler\OSScheduler\obj\Release\OSScheduler.pdb
+E:\study\Cloud Drives\Github\ASU-CSE\3rd year\2nd semester\CSE 322 Operating Systems\OSScheduler\OSScheduler\obj\Release\OSScheduler.csprojResolveAssemblyReference.cache
+E:\study\Cloud Drives\Github\ASU-CSE\3rd year\2nd semester\CSE 322 Operating Systems\OSScheduler\OSScheduler\obj\Release\App.baml
+E:\study\Cloud Drives\Github\ASU-CSE\3rd year\2nd semester\CSE 322 Operating Systems\OSScheduler\OSScheduler\obj\Release\GeneratedInternalTypeHelper.g.cs
+E:\study\Cloud Drives\Github\ASU-CSE\3rd year\2nd semester\CSE 322 Operating Systems\OSScheduler\OSScheduler\obj\Release\OSScheduler_MarkupCompile.lref
