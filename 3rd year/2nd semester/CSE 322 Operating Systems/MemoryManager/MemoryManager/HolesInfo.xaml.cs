@@ -62,10 +62,7 @@ namespace MemoryManager
                            MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
-                else
-                {
-                    units.Add(tmp);
-                }
+                units.Add(tmp);
             }
             var memoryState = new MemoryState(_memorySize,units);
             memoryState.Show();
@@ -89,12 +86,12 @@ namespace MemoryManager
             };
             var label2 = new Label
             {
-                Content = "Starting Address",
+                Content = "Starting Address (in Bytes)",
                 HorizontalAlignment = HorizontalAlignment.Center
             };
             var label3 = new Label
             {
-                Content = "Size",
+                Content = "Size (in Bytes)",
                 HorizontalAlignment = HorizontalAlignment.Center
             };
             Grid.SetRow(label1, 0);

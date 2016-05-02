@@ -116,6 +116,7 @@ namespace MemoryManager
                         unit.Name = name;
                         unit.Type = UnitType.Process;
                         allocated = true;
+                        RenderMemory();
                         break;
                     }
                     else if (unit.Size > size)
@@ -153,6 +154,7 @@ namespace MemoryManager
                         unit.Name = name;
                         unit.Type = UnitType.Process;
                         allocated = true;
+                        RenderMemory();
                         break;
                     }
                     else if (unit.Size > size)
@@ -190,6 +192,7 @@ namespace MemoryManager
                         unit.Name = name;
                         unit.Type = UnitType.Process;
                         allocated = true;
+                        RenderMemory();
                         break;
                     }
                     else if (unit.Size > size)

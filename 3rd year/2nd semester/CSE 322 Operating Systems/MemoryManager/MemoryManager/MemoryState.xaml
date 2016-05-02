@@ -40,7 +40,7 @@
                 </Grid.RowDefinitions>
                 <Label Content="Process Name: " />
                 <TextBox Name="ProcessName1" Grid.Row="0" Grid.Column="1"/>
-                <Label Content="Process Size: " Grid.Row="1" Grid.Column="0"/>
+                <Label Content="Process Size (in Bytes): " Grid.Row="1" Grid.Column="0"/>
                 <TextBox Name="ProcessSize" Grid.Row="1" Grid.Column="1"/>
                 <Label Content="Choose Method:" Grid.Row="2" Grid.Column="0"/>
                 <ListBox Name="Method" Grid.Row="2" Grid.Column="1">

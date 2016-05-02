@@ -11,10 +11,10 @@ namespace MemoryManager
         public MemoryUnitBlock(MemoryUnit unit)
         {
             InitializeComponent();
-            UnitStart.Content = unit.StartingAddress;
+            UnitStart.Content = unit.StartingAddress + " B";
             UnitName.Content = unit.Name;
-            UnitSize.Content = unit.Size;
-            UnitEnd.Content = unit.EndAddress;
+            UnitSize.Content = unit.Size + " B";
+            UnitEnd.Content = unit.EndAddress + " B";
             switch (unit.Type)
             {
                 case UnitType.Hole:
