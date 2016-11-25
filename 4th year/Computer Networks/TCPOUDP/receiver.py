@@ -21,30 +21,25 @@ def checksum(msg):
 
 server_port = 12000
 server_socket = socket(AF_INET, SOCK_DGRAM)
-server_socket.settimeout(1)
+server_socket.settimeout(0.5)
 server_socket.bind(('', server_port))
 print "The server is ready to receive"
-expected_pkt_no = 0
-last_ack = "None"
+expected_seq_no = 1
+last_ack = 0
 while 1:
     try:
         packet, clientAddress = server_socket.recvfrom(2048)
         received_checksum = packet[0:4]
-        pkt_no = int(packet[4:5], 16)
-        message = packet[5:].decode("hex")
+        seq_no = int(packet[4:12], 16)
+        message = packet[12:].decode("hex")
         calculated_checksum = checksum(message)
         not_corrupted = (int(received_checksum, 16) + calculated_checksum) == 65535
-        correct_sequence = pkt_no == expected_pkt_no
+        correct_sequence = seq_no == expected_seq_no
         if not_corrupted and correct_sequence:
-            if expected_pkt_no == 0:
-                last_ack = "ACK0"
-                expected_pkt_no = (expected_pkt_no + 1) % 2
-            else:
-                last_ack = "ACK1"
-                expected_pkt_no = (expected_pkt_no + 1) % 2
-            print "A message with sequence: ", pkt_no, " from (", clientAddress, "): ", message
+            expected_seq_no += len(message)
+            print "A message with sequence: ", seq_no, " from (", clientAddress, "): ", message
         sleep(random.uniform(0, 2))
-        server_socket.sendto(last_ack, clientAddress)
+        server_socket.sendto(str(expected_seq_no), clientAddress)
     except error:
         continue
 

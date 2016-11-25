@@ -1,5 +1,6 @@
 from socket import *
 from time import sleep
+import random
 
 
 def carry_around_add(a, b):
@@ -18,32 +19,28 @@ def checksum(msg):
     return ~s & 0xffff
 
 
-pkt_no = 0
+next_seq_num = 1
+send_base = 1
 
 
-def rdt_send(message, destination_ip, destination_port):
-    """rdt 3.0"""
-    global pkt_no
+def tcp_send(message, destination_ip, destination_port):
+    global next_seq_num
+    global send_base
     message_bytes = [elem.encode("hex") for elem in message]
     data = ''.join(message_bytes)
-    sndpkt = format(checksum(message), 'x') + format(pkt_no, 'x') + data  # make_pkt
+    sndpkt = format(checksum(message), 'x') + format(next_seq_num, '08x') + data  # make_pkt
     client_socket = socket(AF_INET, SOCK_DGRAM)
-    client_socket.settimeout(1)
+    client_socket.settimeout(0.5)
     while 1:
-        print "sending pkt", pkt_no
+        print "sending pkt with seq:", next_seq_num
         client_socket.sendto(sndpkt,(destination_ip,destination_port))  # udt_send
         try:
             response, server_address = client_socket.recvfrom(2048)
-            if pkt_no == 0:
-                if response == "ACK0":
-                    client_socket.close()
-                    pkt_no = (pkt_no + 1) % 2
-                    return
-            else:
-                if response == "ACK1":
-                    client_socket.close()
-                    pkt_no = (pkt_no + 1) % 2
-                    return
+            print "ACK seq:", response
+            if int(response) == next_seq_num + len(message):
+                next_seq_num = int(response)
+                client_socket.close()
+                return
         except timeout:
             print "timeout"
             continue
@@ -52,5 +49,5 @@ def rdt_send(message, destination_ip, destination_port):
 
 while 1:
     str_message = "test message"
-    rdt_send(str_message, 'localhost', 12000)
-    sleep(2)
+    tcp_send(str_message, 'localhost', 12000)
+    sleep(random.uniform(0, 2))
