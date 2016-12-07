@@ -21,6 +21,8 @@ namespace TinyScanner
             {
                 case "if":
                     return TokenType.IF;
+				case "then":
+                    return TokenType.THEN;
                 case "else":
                     return TokenType.ELSE;
                 case "end":
@@ -45,8 +47,6 @@ namespace TinyScanner
                     return TokenType.EQ;
                 case "<":
                     return TokenType.LT;
-                case ">":
-                    return TokenType.GT;
                 case "(":
                     return TokenType.LPAREN;
                 case ")":
