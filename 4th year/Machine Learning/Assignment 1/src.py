@@ -36,14 +36,14 @@ def mahalanobis_distance(x_vector, mean_vector, covariance_matrix):
 
 def MAP_classifier(data, mean, covariance, prior):
     inv_covariance = np.linalg.inv(covariance)
-    det_covariance = np.linalg.det(covariance1)
+    det_covariance = np.linalg.det(covariance)
     v = data - mean
     return -0.5 * np.sum(np.dot(v, inv_covariance) * v, axis=1) - 0.5 * np.log(det_covariance) + np.log(prior)
 
 
 def ML_classifier(data, mean, covariance):
     inv_covariance = np.linalg.inv(covariance)
-    det_covariance = np.linalg.det(covariance1)
+    det_covariance = np.linalg.det(covariance)
     v = data - mean
     return -0.5 * np.sum(np.dot(v, inv_covariance) * v, axis=1) - 0.5 * np.log(det_covariance)
 
@@ -82,7 +82,7 @@ prior3 = 0.1
 g1 = MAP_classifier(points, mean1, covariance1, prior1)
 g2 = MAP_classifier(points, mean2, covariance2, prior2)
 g3 = MAP_classifier(points, mean3, covariance3, prior3)
-
+print g1, g2, g3
 print "Using MAP classifier:"
 print "\tPoint {0} belongs to class w{1}".format(point1, classify(g1[0], g2[0], g3[0]))
 print "\tPoint {0} belongs to class w{1}".format(point2, classify(g1[1], g2[1], g3[1]))
@@ -90,23 +90,107 @@ print "\tPoint {0} belongs to class w{1}".format(point3, classify(g1[2], g2[2], 
 print "\tPoint {0} belongs to class w{1}".format(point4, classify(g1[3], g2[3], g3[3]))
 
 # Question 4
-z_lvl = 0
-X, Y, Z = np.mgrid[-10:10:100j, -10:10:100j, z_lvl:z_lvl:1j]
-drawing_points = np.c_[X.ravel(), Y.ravel(), Z.ravel()]
-g1 = MAP_classifier(drawing_points, mean1, covariance1, prior1)
-g2 = MAP_classifier(drawing_points, mean2, covariance2, prior2)
-g3 = MAP_classifier(drawing_points, mean3, covariance3, prior3)
-g1.shape = 100, 100
-g2.shape = 100, 100
-g3.shape = 100, 100
-Dr = np.empty([100, 100])
-for i in range(100):
-    for j in range(100):
-        Dr[i][j] = classify(g1[i][j], g2[i][j], g3[i][j])
 
-X, Y = np.mgrid[-10:10:100j, -10:10:100j]
-pl.pcolormesh(X, Y, Dr)
-pl.title("Using MAP classifier with X3 = {0}".format(z_lvl))
+# X1 vs X2 and X3 is fixed
+fig, axarr = pl.subplots(4, 3)
+lvls = [-10, -8, -6, -4, -2, 0, 1, 2, 4, 6, 8, 10]
+row_itr = 0
+col_itr = 0
+for x3_lvl in lvls:
+    X, Y, Z = np.mgrid[-10:10:100j, -10:10:100j, x3_lvl:x3_lvl:1j]
+    drawing_points = np.c_[X.ravel(), Y.ravel(), Z.ravel()]
+    g1 = MAP_classifier(drawing_points, mean1, covariance1, prior1)
+    g2 = MAP_classifier(drawing_points, mean2, covariance2, prior2)
+    g3 = MAP_classifier(drawing_points, mean3, covariance3, prior3)
+    g1.shape = 100, 100
+    g2.shape = 100, 100
+    g3.shape = 100, 100
+    Dr = np.empty([100, 100])
+    for i in range(100):
+        for j in range(100):
+            Dr[i][j] = classify(g1[i][j], g2[i][j], g3[i][j])
+
+    X, Y = np.mgrid[-10:10:100j, -10:10:100j]
+    axarr[row_itr, col_itr].pcolormesh(X, Y, Dr)
+    axarr[row_itr, col_itr].set_title("X3 = {0}".format(x3_lvl))
+    col_itr += 1
+    if col_itr == 3:
+        row_itr += 1
+        col_itr = 0
+pl.setp([a.get_xticklabels() for a in axarr[0, :]], visible=False)
+pl.setp([a.get_xticklabels() for a in axarr[1, :]], visible=False)
+pl.setp([a.get_xticklabels() for a in axarr[2, :]], visible=False)
+pl.setp([a.get_yticklabels() for a in axarr[:, 1]], visible=False)
+pl.setp([a.get_yticklabels() for a in axarr[:, 2]], visible=False)
+fig.canvas.set_window_title("Using MAP classifier")
+pl.show()
+
+# X1 vs X3 and X2 is fixed
+fig, axarr = pl.subplots(4, 3)
+lvls = [-10, -8, -6, -4, -2, 0, 1, 2, 4, 6, 8, 10]
+row_itr = 0
+col_itr = 0
+for x2_lvl in lvls:
+    X, Y, Z = np.mgrid[-10:10:100j, x2_lvl:x2_lvl:1j, -10:10:100j]
+    drawing_points = np.c_[X.ravel(), Y.ravel(), Z.ravel()]
+    g1 = MAP_classifier(drawing_points, mean1, covariance1, prior1)
+    g2 = MAP_classifier(drawing_points, mean2, covariance2, prior2)
+    g3 = MAP_classifier(drawing_points, mean3, covariance3, prior3)
+    g1.shape = 100, 100
+    g2.shape = 100, 100
+    g3.shape = 100, 100
+    Dr = np.empty([100, 100])
+    for i in range(100):
+        for j in range(100):
+            Dr[i][j] = classify(g1[i][j], g2[i][j], g3[i][j])
+
+    X, Y = np.mgrid[-10:10:100j, -10:10:100j]
+    axarr[row_itr, col_itr].pcolormesh(X, Y, Dr)
+    axarr[row_itr, col_itr].set_title("X2 = {0}".format(x2_lvl))
+    col_itr += 1
+    if col_itr == 3:
+        row_itr += 1
+        col_itr = 0
+pl.setp([a.get_xticklabels() for a in axarr[0, :]], visible=False)
+pl.setp([a.get_xticklabels() for a in axarr[1, :]], visible=False)
+pl.setp([a.get_xticklabels() for a in axarr[2, :]], visible=False)
+pl.setp([a.get_yticklabels() for a in axarr[:, 1]], visible=False)
+pl.setp([a.get_yticklabels() for a in axarr[:, 2]], visible=False)
+fig.canvas.set_window_title("Using MAP classifier")
+pl.show()
+
+# X2 vs X3 and X1 is fixed
+fig, axarr = pl.subplots(4, 3)
+lvls = [-10, -8, -6, -4, -2, 0, 1, 2, 4, 6, 8, 10]
+row_itr = 0
+col_itr = 0
+for x1_lvl in lvls:
+    X, Y, Z = np.mgrid[x1_lvl:x1_lvl:1j, -10:10:100j, -10:10:100j]
+    drawing_points = np.c_[X.ravel(), Y.ravel(), Z.ravel()]
+    g1 = MAP_classifier(drawing_points, mean1, covariance1, prior1)
+    g2 = MAP_classifier(drawing_points, mean2, covariance2, prior2)
+    g3 = MAP_classifier(drawing_points, mean3, covariance3, prior3)
+    g1.shape = 100, 100
+    g2.shape = 100, 100
+    g3.shape = 100, 100
+    Dr = np.empty([100, 100])
+    for i in range(100):
+        for j in range(100):
+            Dr[i][j] = classify(g1[i][j], g2[i][j], g3[i][j])
+
+    X, Y = np.mgrid[-10:10:100j, -10:10:100j]
+    axarr[row_itr, col_itr].pcolormesh(X, Y, Dr)
+    axarr[row_itr, col_itr].set_title("X1 = {0}".format(x1_lvl))
+    col_itr += 1
+    if col_itr == 3:
+        row_itr += 1
+        col_itr = 0
+pl.setp([a.get_xticklabels() for a in axarr[0, :]], visible=False)
+pl.setp([a.get_xticklabels() for a in axarr[1, :]], visible=False)
+pl.setp([a.get_xticklabels() for a in axarr[2, :]], visible=False)
+pl.setp([a.get_yticklabels() for a in axarr[:, 1]], visible=False)
+pl.setp([a.get_yticklabels() for a in axarr[:, 2]], visible=False)
+fig.canvas.set_window_title("Using MAP classifier")
 pl.show()
 
 # Question 5
@@ -120,21 +204,104 @@ print "\tPoint {0} belongs to class w{1}".format(point2, classify(g1[1], g2[1], 
 print "\tPoint {0} belongs to class w{1}".format(point3, classify(g1[2], g2[2], g3[2]))
 print "\tPoint {0} belongs to class w{1}".format(point4, classify(g1[3], g2[3], g3[3]))
 
-z_lvl = 0
-X, Y, Z = np.mgrid[-10:10:100j, -10:10:100j, z_lvl:z_lvl:1j]
-drawing_points = np.c_[X.ravel(), Y.ravel(), Z.ravel()]
-g1 = ML_classifier(drawing_points, mean1, covariance1)
-g2 = ML_classifier(drawing_points, mean2, covariance2)
-g3 = ML_classifier(drawing_points, mean3, covariance3)
-g1.shape = 100, 100
-g2.shape = 100, 100
-g3.shape = 100, 100
-Dr = np.empty([100, 100])
-for i in range(100):
-    for j in range(100):
-        Dr[i][j] = classify(g1[i][j], g2[i][j], g3[i][j])
+# X1 vs X2 and X3 is fixed
+fig, axarr = pl.subplots(4, 3)
+lvls = [-10, -8, -6, -4, -2, 0, 1, 2, 4, 6, 8, 10]
+row_itr = 0
+col_itr = 0
+for x3_lvl in lvls:
+    X, Y, Z = np.mgrid[-10:10:100j, -10:10:100j, x3_lvl:x3_lvl:1j]
+    drawing_points = np.c_[X.ravel(), Y.ravel(), Z.ravel()]
+    g1 = ML_classifier(drawing_points, mean1, covariance1)
+    g2 = ML_classifier(drawing_points, mean2, covariance2)
+    g3 = ML_classifier(drawing_points, mean3, covariance3)
+    g1.shape = 100, 100
+    g2.shape = 100, 100
+    g3.shape = 100, 100
+    Dr = np.empty([100, 100])
+    for i in range(100):
+        for j in range(100):
+            Dr[i][j] = classify(g1[i][j], g2[i][j], g3[i][j])
 
-X, Y = np.mgrid[-10:10:100j, -10:10:100j]
-pl.pcolormesh(X, Y, Dr)
-pl.title("Using ML classifier with X3 = {0}".format(z_lvl))
+    X, Y = np.mgrid[-10:10:100j, -10:10:100j]
+    axarr[row_itr, col_itr].pcolormesh(X, Y, Dr)
+    axarr[row_itr, col_itr].set_title("X3 = {0}".format(x3_lvl))
+    col_itr += 1
+    if col_itr == 3:
+        row_itr += 1
+        col_itr = 0
+pl.setp([a.get_xticklabels() for a in axarr[0, :]], visible=False)
+pl.setp([a.get_xticklabels() for a in axarr[1, :]], visible=False)
+pl.setp([a.get_xticklabels() for a in axarr[2, :]], visible=False)
+pl.setp([a.get_yticklabels() for a in axarr[:, 1]], visible=False)
+pl.setp([a.get_yticklabels() for a in axarr[:, 2]], visible=False)
+fig.canvas.set_window_title("Using ML classifier")
+pl.show()
+
+# X1 vs X3 and X2 is fixed
+fig, axarr = pl.subplots(4, 3)
+lvls = [-10, -8, -6, -4, -2, 0, 1, 2, 4, 6, 8, 10]
+row_itr = 0
+col_itr = 0
+for x2_lvl in lvls:
+    X, Y, Z = np.mgrid[-10:10:100j, x2_lvl:x2_lvl:1j, -10:10:100j]
+    drawing_points = np.c_[X.ravel(), Y.ravel(), Z.ravel()]
+    g1 = ML_classifier(drawing_points, mean1, covariance1)
+    g2 = ML_classifier(drawing_points, mean2, covariance2)
+    g3 = ML_classifier(drawing_points, mean3, covariance3)
+    g1.shape = 100, 100
+    g2.shape = 100, 100
+    g3.shape = 100, 100
+    Dr = np.empty([100, 100])
+    for i in range(100):
+        for j in range(100):
+            Dr[i][j] = classify(g1[i][j], g2[i][j], g3[i][j])
+
+    X, Y = np.mgrid[-10:10:100j, -10:10:100j]
+    axarr[row_itr, col_itr].pcolormesh(X, Y, Dr)
+    axarr[row_itr, col_itr].set_title("X2 = {0}".format(x2_lvl))
+    col_itr += 1
+    if col_itr == 3:
+        row_itr += 1
+        col_itr = 0
+pl.setp([a.get_xticklabels() for a in axarr[0, :]], visible=False)
+pl.setp([a.get_xticklabels() for a in axarr[1, :]], visible=False)
+pl.setp([a.get_xticklabels() for a in axarr[2, :]], visible=False)
+pl.setp([a.get_yticklabels() for a in axarr[:, 1]], visible=False)
+pl.setp([a.get_yticklabels() for a in axarr[:, 2]], visible=False)
+fig.canvas.set_window_title("Using ML classifier")
+pl.show()
+
+# X2 vs X3 and X1 is fixed
+fig, axarr = pl.subplots(4, 3)
+lvls = [-10, -8, -6, -4, -2, 0, 1, 2, 4, 6, 8, 10]
+row_itr = 0
+col_itr = 0
+for x1_lvl in lvls:
+    X, Y, Z = np.mgrid[x1_lvl:x1_lvl:1j, -10:10:100j, -10:10:100j]
+    drawing_points = np.c_[X.ravel(), Y.ravel(), Z.ravel()]
+    g1 = ML_classifier(drawing_points, mean1, covariance1)
+    g2 = ML_classifier(drawing_points, mean2, covariance2)
+    g3 = ML_classifier(drawing_points, mean3, covariance3)
+    g1.shape = 100, 100
+    g2.shape = 100, 100
+    g3.shape = 100, 100
+    Dr = np.empty([100, 100])
+    for i in range(100):
+        for j in range(100):
+            Dr[i][j] = classify(g1[i][j], g2[i][j], g3[i][j])
+
+    X, Y = np.mgrid[-10:10:100j, -10:10:100j]
+    axarr[row_itr, col_itr].pcolormesh(X, Y, Dr)
+    axarr[row_itr, col_itr].set_title("X1 = {0}".format(x1_lvl))
+    col_itr += 1
+    if col_itr == 3:
+        row_itr += 1
+        col_itr = 0
+pl.setp([a.get_xticklabels() for a in axarr[0, :]], visible=False)
+pl.setp([a.get_xticklabels() for a in axarr[1, :]], visible=False)
+pl.setp([a.get_xticklabels() for a in axarr[2, :]], visible=False)
+pl.setp([a.get_yticklabels() for a in axarr[:, 1]], visible=False)
+pl.setp([a.get_yticklabels() for a in axarr[:, 2]], visible=False)
+fig.canvas.set_window_title("Using ML classifier")
 pl.show()
