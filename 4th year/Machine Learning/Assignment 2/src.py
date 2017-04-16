@@ -1,4 +1,5 @@
 import operator
+import math
 
 # TRAINING
 with open("train") as f:
@@ -49,16 +50,10 @@ number_of_words_ham = sum(words_ham.itervalues())
 words_Likelihood_spam = {}
 words_Likelihood_ham = {}
 for word in vocabulary.iterkeys():
-    if word in words_spam:
-        words_Likelihood_spam[word] = (words_spam[word] + 1.0) / \
+    words_Likelihood_spam[word] = (words_spam.get(word, 0) + 1.0) / \
                                       (number_of_words_spam + number_of_unique_words_vocabulary)
-    else:
-        words_Likelihood_spam[word] = 1.0 / (number_of_words_spam + number_of_unique_words_vocabulary)
-    if word in words_ham:
-        words_Likelihood_ham[word] = (words_ham[word] + 1.0) / \
+    words_Likelihood_ham[word] = (words_ham.get(word, 0) + 1.0) / \
                                       (number_of_words_ham + number_of_unique_words_vocabulary)
-    else:
-        words_Likelihood_ham[word] = 1.0 / (number_of_words_ham + number_of_unique_words_vocabulary)
 
 sorted_likelihood_spam = sorted(words_Likelihood_spam.items(), key=operator.itemgetter(1))
 sorted_likelihood_spam.reverse()
@@ -85,17 +80,18 @@ for test in testing_content:
     test = test.split(' ', 1)
     correct_class = test[0]
     test_words = test[1].split(' ')
-    p_spam = prior_spam
-    p_ham = prior_ham
+    p_spam = math.log(prior_spam)
+    p_ham = math.log(prior_ham)
     for i in range(0, len(test_words), 2):
-        p_spam *= words_Likelihood_spam[test_words[i]] ** int(test_words[i + 1])
-        p_ham *= words_Likelihood_ham[test_words[i]] ** int(test_words[i + 1])
+        p_spam += int(test_words[i + 1]) * math.log(words_Likelihood_spam[test_words[i]])
+        p_ham += int(test_words[i + 1]) * math.log(words_Likelihood_ham[test_words[i]])
     if p_spam >= p_ham:
         test_class = "spam"
     else:
         test_class = "ham"
     if test_class == correct_class:
         correct_classifications += 1
+    # print "mail {0} is {1} spam and {2} ham.".format(mail_cnt, p_spam, p_ham)
     # print "mail {0} is classified as {1} and it is {2}.".format(mail_cnt, test_class, correct_class)
     # mail_cnt += 1
 
